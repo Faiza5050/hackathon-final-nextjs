@@ -1,28 +1,28 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import React from "react";
+import Image from "next/image";
 
-// Dummy hijab styles (same as homepage)
 const hijabStyles = [
   {
     id: "1",
     name: "Casual Hijab",
     description: "Perfect for daily wear.",
-    image: "https://via.placeholder.com/200x200.png?text=Casual+Hijab"
+    image: "/image1.jpg",
   },
   {
     id: "2",
     name: "Formal Hijab",
     description: "Elegant look for events.",
-    image: "https://via.placeholder.com/200x200.png?text=Formal+Hijab"
-  }
+    image: "/image2.jpg",
+  },
 ];
 
 export default function StylePage() {
-  const params = useParams(); // get dynamic [id]
+  const params = useParams();
   const style = hijabStyles.find((s) => s.id === params.id);
 
-  // Dummy reviews
   const [reviews, setReviews] = useState([
     { id: 1, text: "Beautiful style!", rating: 5 },
     { id: 2, text: "Very comfortable.", rating: 4 },
@@ -43,17 +43,19 @@ export default function StylePage() {
   }
 
   return (
-    <div className="p-6">
-      {/* Hijab Style Detail */}
+    <div className="p-10">
       <div className="border rounded-lg shadow mb-6">
-        <img src={style.image} alt={style.name} className="w-full h-64 object-cover rounded-t-lg" />
-        <div className="p-4">
+        <img
+          src={style.image}
+          alt={style.name}
+          className="w-full object-cover rounded-t-lg"
+        />
+        <div className="p-10">
           <h1 className="text-2xl font-bold">{style.name}</h1>
           <p className="text-gray-600">{style.description}</p>
         </div>
       </div>
 
-      {/* Reviews Section */}
       <h2 className="text-xl font-semibold mb-4">Reviews</h2>
       <ul className="mb-6 space-y-2">
         {reviews.map((review) => (
@@ -63,7 +65,6 @@ export default function StylePage() {
         ))}
       </ul>
 
-      {/* Add Review Form */}
       <form onSubmit={addReview} className="space-y-3">
         <textarea
           placeholder="Write your review..."
@@ -82,7 +83,9 @@ export default function StylePage() {
             </option>
           ))}
         </select>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">Add Review</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          Add Review
+        </button>
       </form>
     </div>
   );
