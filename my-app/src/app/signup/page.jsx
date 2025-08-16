@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { auth } from "@/lib/firebase"; // jo firebase.js banayi thi usme se auth import
+import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignupPage() {
@@ -14,7 +14,7 @@ export default function SignupPage() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("Signup successful ✅");
-      router.push("/login"); // signup ke baad login page par redirect
+      router.push("/login");
     } catch (error) {
       console.error(error.message);
       alert(error.message);
